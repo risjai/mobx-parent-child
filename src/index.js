@@ -10,9 +10,11 @@ let data = observable([1, 2, 3, 4]);
 const Parent = observer(() => {
   return (
     <div className="App">
-      This is good. Click any button, only that button is re-rendered. Check
-      console statement for clarity.There should only be one console statement
-      per click.
+      <h3>
+        Click any button, only that button is re-rendered. Check console
+        statement for clarity.There should only be one console statement per
+        click.
+      </h3>
       <hr />
       <div>
         {data.map((e, i) => {
