@@ -7,21 +7,22 @@ import "./styles.css";
 
 let data = observable([1, 2, 3, 4]);
 
-const App = observer(() => {
+const Parent = observer(() => {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      This is good. Click any button, only that button is re-rendered. Check
+      console statement for clarity.
+      <hr />
       <div>
         {data.map((e, i) => {
-          return <Test val={e} key={i} idx={i} />;
+          return <Child val={e} key={i} idx={i} />;
         })}
       </div>
     </div>
   );
 });
 
-const Test = observer(props => {
+const Child = observer(props => {
   const increment = () => {
     data[props.idx] = props.val + 1;
   };
@@ -42,4 +43,4 @@ const Test = observer(props => {
 });
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Parent />, rootElement);
