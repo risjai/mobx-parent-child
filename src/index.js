@@ -7,39 +7,37 @@ import "./styles.css";
 
 let data = observable([1, 2, 3, 4]);
 
-const App = observer(() => {
+const Parent = observer(() => {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h3>
+        Click any button, all the buttons are re-rendered. Check console
+        statement for clarity.There would be 4 console statements per click.
+      </h3>
       <div>
-        {data.map((e, i) => {
-          return <Test val={e} key={i} idx={i} />;
+        {data.map((val, i) => {
+          const increment = () => {
+            data[i] = val + 1;
+          };
+          console.log(i + 1 + " button is re-rendered");
+          return (
+            <>
+              <div>
+                {val}
+                <span style={{ padding: "10px" }}>
+                  <button color="blue" onClick={increment}>
+                    Increment
+                  </button>
+                </span>
+              </div>
+              <br />
+            </>
+          );
         })}
       </div>
     </div>
   );
 });
 
-const Test = observer(props => {
-  const increment = () => {
-    data[props.idx] = props.val + 1;
-  };
-  console.log(props.idx + 1 + " button is re-rendered");
-  return (
-    <>
-      <div>
-        {props.val}
-        <span style={{ padding: "10px" }}>
-          <button color="blue" onClick={increment}>
-            Increment
-          </button>
-        </span>
-      </div>
-      <br />
-    </>
-  );
-});
-
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Parent />, rootElement);
