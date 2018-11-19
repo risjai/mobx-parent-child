@@ -11,7 +11,8 @@ const Parent = observer(() => {
   return (
     <div className="App">
       This is good. Click any button, only that button is re-rendered. Check
-      console statement for clarity.
+      console statement for clarity.There should only be one console statement
+      per click.
       <hr />
       <div>
         {data.map((e, i) => {
